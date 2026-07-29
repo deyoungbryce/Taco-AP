@@ -8,8 +8,8 @@ class Goal(Choice):
 class GearRando(Choice):
     """Choose how gears will be randomized into the multiworld
     Gears will always be progressive unlocks, but there are options for how restrictive the progression will be
-    - Per Stage: Each gear unlock is tied to a specific stage. For example, you could recieve 'Progressive Gear - Sculker Hideout' which would allow you to obtain and use the first gear in any of the Sculker Hideout levels
-    - Per Level: Each gear unlock is tied to an individual level. Example is the same as 'Per Stage', however the gear unlock would come in the form of 'Progressive Gear - Sculker Hideout Level 1'
+    - Per Stage: Each gear unlock is tied to a specific stage. For example, you could recieve 'Progressive Gear - Skulker Hideout' which would allow you to obtain and use the first gear in any of the Skulker Hideout levels
+    - Per Level: Each gear unlock is tied to an individual level. Example is the same as 'Per Stage', however the gear unlock would come in the form of 'Progressive Gear - Skulker Hideout Level 1'
     - Progressive: Each gear unlock is progressive across the entire game. If you recieve a progressive gear unlock you can then use that gear in any level"""
     display_name: str = "Gear Randomization"
     option_per_stage = 0

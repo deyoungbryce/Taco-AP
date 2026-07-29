@@ -1,50 +1,28 @@
-from typing import TYPE_CHECKING, Tuple, Dict
+# Region names as to be reference elsewhere in the code.
 
-import worlds._bizhawk as bizhawk
-from worlds._bizhawk.client import BizHawkClient
-from NetUtils import ClientStatus, NetworkItem
+skulker_factory = "Area 1 - Skulker Factory"
+factory_1_1 = "Area 1-1 - Skulker Hideout"
+factory_1_2 = "Area 1-2 - Skulker Factory"
+factory_secret = "Area 1 Secret - Restricted Area"
 
-if TYPE_CHECKING:
-    from worlds._bizhawk.context import BizHawkClientContext, BizHawkClientCommandProcessor
+art_museum = "Area 2 - Art Museum"
+museum_2_1 = "Area 2-1 - Art Museum"
+museum_2_2 = "Area 2-2 - Museum Vault"
+museum_bonus = "Area 2 Bonus - Employee Area"
 
+kuru_ruins = "Area 3 - Kuru Ruins"
+ruins_3_1 = "Area 3-1 - Kuru Ruins"
+ruins_3_2 = "Area 3-2 - Sunken Ruins"
+ruins_secret = "Area 3 Secret - Forgotten Ruins"
 
-class DrillDozerClient(BizHawkClient):
-    game = "Drill Dozer"
-    system = "GBA"
-    patch_suffix = ".dozer"
+metal_city = "Area 4 - Metal City"
+city_4_1 = "Area 4-1 - Metal City"
+city_4_2 = "Area 4_2 - Metal City Skyline"
+city_secret = "Area 4 Secret - Metal City Highrise"
 
-    async def validate_rom(self, ctx: "BizHawkClientContext") -> bool:
-        try:
-            rom_name = ((await bizhawk.read(ctx.bizhawk_ctx, [(0x00, 6, "ROM")]))[0]).decode("ascii")
-            if rom_name != "MYGAME":
-                return False
-        except bizhawk.RequestFailedError:
-            return False
-        
-        ctx.game = self.game
-        ctx.items_handling = 0b00
-        ctx.want_slot_data = True
+clink_prison = "Area 5 - Clink Prison"
+prison_5_1 = "Area 5-1 - Clink Prison"
 
-        return True
-    
-    async def game_watcher(self, ctx: "BizHawkClientContext") -> None:
-        try:
-            save_data = await bizhawk.read(
-                ctx.bizhawk_ctx,
-                [(0x00, 20, "System Bus")]
-            )[0]
-
-            if save_data[2] & 0x00:
-                await ctx.send_msgs([{
-                    "cmd": "LocationChecks",
-                    "locations": [23]
-                }])
-
-            if not ctx.finished_game and (save_data[5] & 0x00):
-                await ctx.send_msgs([{
-                    "cmd": "StatusUpdate",
-                    "status": ClientStatus.CLIENT_GOAL
-                }])
-
-        except bizhawk.RequestFailedError:
-            pass
+drill_missile = "Area 6 - Drill Missile"
+missile_6_1 = "Area 6-1 - Drill Missile"
+missile_6_2 = "Area 6-2 - Croog's Doom Dozer"

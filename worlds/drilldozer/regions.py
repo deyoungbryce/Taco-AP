@@ -1,4 +1,4 @@
-import typing
+from typing import Dict, Set
 
 from BaseClasses import Region, MultiWorld, Location, Entrance
 
@@ -6,6 +6,8 @@ from BaseClasses import Region, MultiWorld, Location, Entrance
 class DrillDozerRegion(Region):
     game: str = "Drill Dozer"
 
-def create_regions(world: MultiWorld, player: int):
-    menu_region = Region("Menu", player, world, "Stage Select")
-    world.regions.append(menu_region)
+drilldozer_regions: Dict[str, Set[str]] = {
+    "Menu": {
+        
+    }
+}
