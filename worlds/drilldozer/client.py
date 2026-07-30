@@ -15,8 +15,8 @@ class DrillDozerClient(BizHawkClient):
 
     async def validate_rom(self, ctx: "BizHawkClientContext") -> bool:
         try:
-            rom_name = ((await bizhawk.read(ctx.bizhawk_ctx, [(0x00, 6, "ROM")]))[0]).decode("ascii")
-            if rom_name != "MYGAME":
+            rom_name = ((await bizhawk.read(ctx.bizhawk_ctx, [(0xA0, 5, "ROM")]))[0]).decode("ascii")
+            if rom_name != "DRILL DOZER.V49E01":
                 return False
         except bizhawk.RequestFailedError:
             return False
